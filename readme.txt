@@ -13,7 +13,7 @@ Lazy-loads media using the native browser feature.
 
 == Description ==
 
-Lazy-loads media using the native browser feature. [Learn more about the new `loading` attribute.](https://web.dev/native-lazy-loading)
+Lazy-loads media using the native browser feature. [Learn more about the new `loading` attribute](https://web.dev/native-lazy-loading) or [view the WordPress core ticket](https://core.trac.wordpress.org/ticket/44427) where inclusion of a similar implementation in WordPress core itself is being discussed.
 
 If the `loading` attribute is not supported by the browser, the plugin falls back to a JavaScript solution based on `IntersectionObserver`.
 
