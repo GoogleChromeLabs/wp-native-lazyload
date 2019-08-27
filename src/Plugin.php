@@ -61,7 +61,12 @@ class Plugin {
 	 * @since 1.0.0
 	 */
 	public function register() {
-		// TODO: Add hooks here.
+		add_action(
+			'wp',
+			function() {
+				( new Lazy_Loader( $this->context ) )->register();
+			}
+		);
 	}
 
 	/**

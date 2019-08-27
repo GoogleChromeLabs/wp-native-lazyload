@@ -79,6 +79,6 @@ class Context {
 	 * @return bool True if an AMP request, false otherwise.
 	 */
 	public function is_amp() : bool {
-		return ! is_admin() && function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
+		return function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
 	}
 }
