@@ -24,6 +24,30 @@ class Unit_Test_Case extends TestCase {
 	protected function setUp() {
 		parent::setUp();
 		Monkey\setUp();
+
+		// We don't care about testing the following functions, so they should just be available.
+		Monkey\Functions\stubs(
+			[
+				// Return original first parameter for these.
+				'esc_attr',
+				'esc_html',
+				'esc_js',
+				'esc_textarea',
+				'__',
+				'_x',
+				'esc_html__',
+				'esc_html_x',
+				'esc_attr_x',
+
+				// Return value determined by callback for these.
+				'_n'                  => function( $single, $plural, $number ) {
+					return 1 === $number ? $single : $plural;
+				},
+				'_nx'                 => function( $single, $plural, $number ) {
+					return 1 === $number ? $single : $plural;
+				},
+			]
+		);
 	}
 
 	/**
