@@ -20,6 +20,7 @@
     "@wordpress/eslint-plugin": "^2.4.0",
     "@wordpress/scripts": "^3.3.0",
     "babel-loader": "^8.0.5",
+    "copyfiles": "^2.1.1",
     "eslint": "^5.16.0",
     "eslint-loader": "^2.1.2",
     "eslint-plugin-jest": "^22.15.2",
@@ -27,7 +28,7 @@
     "webpack-cli": "^3.3.0"
   },
   "scripts": {
-    "build": "webpack -p --mode=production --config='./webpack.config.js'",
+    "build": "webpack -p --mode=production --config='./webpack.config.js' && copyfiles -f ./assets/images/src/* ./assets/images",
     "lint": "eslint ."
   }
 }

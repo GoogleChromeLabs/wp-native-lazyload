@@ -97,9 +97,12 @@ fi
 
 cd $SVNPATH/trunk/
 
-printf "Installing Composer dependencies..."
-rm -rf vendor/
-composer install --prefer-dist --no-dev
+printf "Building assets..."
+rm -rf vendor
+composer install
+rm -rf node_modules
+npm install
+npm run build
 echo "Done."
 
 printf "Removing unnecessary source and test files..."
@@ -107,11 +110,17 @@ rm CONTRIBUTING.md
 rm LICENSE.md
 rm README.md
 rm -rf .github
+rm -rf node_modules
 rm -rf tests
+rm -rf vendor
 echo "Done."
 
 printf "Ignoring GitHub specific files and deployment script..."
-svn propset --quiet svn:ignore ".codeclimate.yml
+svn propset --quiet svn:ignore ".babelrc
+.codeclimate.yml
+.editorconfig
+.eslintignore
+.eslintrc.json
 .git
 .gitignore
 .travis.yml
@@ -124,7 +133,8 @@ package-lock.json
 phpcs.xml.dist
 phpmd.xml.dist
 phpunit.integration.xml.dist
-phpunit.xml.dist" .
+phpunit.xml.dist
+webpack.config.js" .
 echo "Done."
 
 printf "Adding new files..."
