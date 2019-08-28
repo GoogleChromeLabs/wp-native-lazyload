@@ -53,3 +53,7 @@ You can also contribute to the plugin by translating it. Simply visit [translate
 = 1.0.0 =
 
 * Initial release
+
+== Credit ==
+
+This plugin is partly based on logic from [WP Rig](https://github.com/wprig/wprig/blob/v2.0/inc/Lazyload/Component.php) as well as recommendations from [web.dev](https://web.dev/native-lazy-loading) and [developers.google.com](https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/).

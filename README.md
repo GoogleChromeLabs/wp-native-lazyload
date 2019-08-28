@@ -16,3 +16,7 @@ If the `loading` attribute is not supported by the browser, the plugin falls bac
 ## Contributing
 
 Any kind of contributions to Native Lazyload are welcome. Please [read the contributing guidelines](https://github.com/GoogleChromeLabs/wp-native-lazyload/blob/master/CONTRIBUTING.md) to get started.
+
+## Credit
+
+This plugin is partly based on logic from [WP Rig](https://github.com/wprig/wprig/blob/v2.0/inc/Lazyload/Component.php) as well as recommendations from [web.dev](https://web.dev/native-lazy-loading) and [developers.google.com](https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/).
