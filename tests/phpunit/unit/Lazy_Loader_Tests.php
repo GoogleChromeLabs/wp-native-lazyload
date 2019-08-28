@@ -12,6 +12,7 @@ namespace Google\Native_Lazyload\Tests\PHPUnit\Unit;
 
 use Google\Native_Lazyload\Tests\PHPUnit\Framework\Unit_Test_Case;
 use Google\Native_Lazyload\Lazy_Loader;
+use Google\Native_Lazyload\Lazy_Load_Script;
 use Google\Native_Lazyload\Context;
 use Brain\Monkey\Functions;
 
@@ -43,10 +44,34 @@ class Lazy_Loader_Tests extends Unit_Test_Case {
 
 		$this->assertTrue( has_action( 'wp_head', [ $this->lazy_loader, 'add_lazyload_filters' ] ) );
 		$this->assertTrue( has_action( 'admin_bar_menu', [ $this->lazy_loader, 'remove_lazyload_filters' ] ) );
-		$this->assertTrue( has_filter( 'wp_kses_allowed_html' ) );
-		$this->assertTrue( has_action( 'wp_footer' ) );
-		$this->assertTrue( has_action( 'wp_head' ) );
-		$this->assertTrue( has_action( 'wp_enqueue_scripts' ) );
+		$this->assertTrue( has_filter( 'wp_kses_allowed_html', 'function( array $allowed_tags )' ) );
+		$this->assertTrue( has_action( 'wp_footer', Lazy_Load_Script::class . '->print_script()' ) );
+		$this->assertTrue( has_action( 'wp_head', Lazy_Load_Script::class . '->print_style()' ) );
+		$this->assertTrue( has_action( 'wp_enqueue_scripts', Lazy_Load_Script::class . '->register_fallback_script()' ) );
+	}
+
+	public function test_register_with_fallback_disabled() {
+		$this->context->expects( $this->once() )
+			->method( 'is_amp' )
+			->will( $this->returnValue( false ) );
+
+		Functions\when( 'apply_filters' )->alias(
+			function( string $filter, $value ) {
+				if ( 'native_lazyload_fallback_script_enabled' === $filter ) {
+					return false;
+				}
+				return $value;
+			}
+		);
+
+		$this->lazy_loader->register();
+
+		$this->assertTrue( has_action( 'wp_head', [ $this->lazy_loader, 'add_lazyload_filters' ] ) );
+		$this->assertTrue( has_action( 'admin_bar_menu', [ $this->lazy_loader, 'remove_lazyload_filters' ] ) );
+		$this->assertTrue( has_filter( 'wp_kses_allowed_html', 'function( array $allowed_tags )' ) );
+		$this->assertFalse( has_action( 'wp_footer', Lazy_Load_Script::class . '->print_script()' ) );
+		$this->assertFalse( has_action( 'wp_head', Lazy_Load_Script::class . '->print_style()' ) );
+		$this->assertFalse( has_action( 'wp_enqueue_scripts', Lazy_Load_Script::class . '->register_fallback_script()' ) );
 	}
 
 	public function test_lazyload_filters() {

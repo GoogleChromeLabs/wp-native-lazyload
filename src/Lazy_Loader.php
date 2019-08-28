@@ -41,6 +41,16 @@ class Lazy_Loader {
 	protected $context;
 
 	/**
+	 * Whether native lazy-loading should fall back to a JavaScript solution.
+	 *
+	 * Utility for {@see Lazy_Loader::fallback_script_enabled()}.
+	 *
+	 * @since 1.0.0
+	 * @var bool|null
+	 */
+	protected $fallback_enabled = null;
+
+	/**
 	 * Constructor.
 	 *
 	 * @since 1.0.0
@@ -95,10 +105,12 @@ class Lazy_Loader {
 			}
 		);
 
-		$script = new Lazy_Load_Script( $this->context );
-		add_action( 'wp_footer', [ $script, 'print_script' ] );
-		add_action( 'wp_head', [ $script, 'print_style' ] );
-		add_action( 'wp_enqueue_scripts', [ $script, 'register_fallback_script' ] );
+		if ( $this->fallback_script_enabled() ) {
+			$script = new Lazy_Load_Script( $this->context );
+			add_action( 'wp_footer', [ $script, 'print_script' ] );
+			add_action( 'wp_head', [ $script, 'print_style' ] );
+			add_action( 'wp_enqueue_scripts', [ $script, 'register_fallback_script' ] );
+		}
 	}
 
 	/**
@@ -211,7 +223,7 @@ class Lazy_Loader {
 		// Native browser lazy-loading.
 		$attributes['loading'] = 'lazy';
 
-		if ( false !== strpos( static::LAZYLOAD_FALLBACK_TAGS, $tag ) ) {
+		if ( $this->fallback_script_enabled() && false !== strpos( static::LAZYLOAD_FALLBACK_TAGS, $tag ) ) {
 			// JavaScript fallback lazy-loading.
 			$attributes = $this->filter_lazyload_attributes_for_js_fallback( $attributes, $tag );
 		}
@@ -312,5 +324,30 @@ class Lazy_Loader {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Checks whether native lazy-loading should fall back to a JavaScript solution.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return bool True if JavaScript fallback should be used, false otherwise.
+	 */
+	protected function fallback_script_enabled() : bool {
+		if ( null === $this->fallback_enabled ) {
+			/**
+			 * Filters whether native lazy-loading should fall back to a JavaScript solution.
+			 *
+			 * If enabled, a JavaScript file with lazy-loading logic will be loaded for browsers that
+			 * do not support the 'loading' attribute.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param bool $enabled Whether native lazy-loading should fall back to a JavaScript solution.
+			 */
+			$this->fallback_enabled = (bool) apply_filters( 'native_lazyload_fallback_script_enabled', true );
+		}
+
+		return $this->fallback_enabled;
 	}
 }

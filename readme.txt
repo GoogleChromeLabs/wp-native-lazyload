@@ -34,6 +34,10 @@ This plugin does not have a settings screen. Just by activating it, the plugin w
 
 You can add a class `skip-lazy` to indicate to the plugin you would like to skip lazy-loading for this image or iframe.
 
+= This plugin loads an extra JavaScript file! I don't want that. =
+
+This is perfectly fair. Note that the plugin only loads the JavaScript file as a fallback for when the user's browser does not support the native `loading` attribute yet. The file includes logic to still autoload the image in a non-native way. If you prefer to purely rely on the `loading` attribute and not provide any fallback, you can easily disable it by adding a line `add_filter( 'native_lazyload_fallback_script_enabled', '__return_false' )` somewhere in your site's codebase.
+
 = Does this work with AMP? =
 
 If you use AMP, you don't actually need this, since AMP intelligently lazy-loads media out of the box. Still, the plugin is built in a way that it will not break AMP compatibility, just to make sure.
