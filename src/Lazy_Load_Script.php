@@ -18,7 +18,7 @@ namespace Google\Native_Lazyload;
 class Lazy_Load_Script {
 
 	// Relative path to the JavaScript fallback file.
-	const FALLBACK_SCRIPT_PATH = 'assets/js/lazyload.min.js';
+	const FALLBACK_SCRIPT_PATH = 'assets/js/lazyload.js';
 
 	/**
 	 * Plugin context instance to pass around.
@@ -70,7 +70,7 @@ if ( 'loading' in HTMLImageElement.prototype ) {
 	( function() {
 		var script = document.createElement( 'script' );
 		script.type = 'text/javascript';
-		script.src = '<?php echo esc_js( $this->context->url( static::FALLBACK_SCRIPT_PATH ) ); ?>';
+		script.src = '<?php echo esc_js( $this->get_fallback_script_url() ); ?>';
 		script.defer = true;
 		document.body.appendChild( script );
 	} )();
@@ -105,7 +105,7 @@ if ( 'loading' in HTMLImageElement.prototype ) {
 		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters
 		wp_register_script(
 			'native-lazyload-fallback',
-			$this->context->url( static::FALLBACK_SCRIPT_PATH ),
+			$this->get_fallback_script_url(),
 			[],
 			null,
 			true
@@ -113,5 +113,20 @@ if ( 'loading' in HTMLImageElement.prototype ) {
 
 		wp_script_add_data( 'native-lazyload-fallback', 'defer', true );
 		wp_script_add_data( 'native-lazyload-fallback', 'precache', true );
+	}
+
+	/**
+	 * Gets the URL to the fallback JavaScript file to load.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string File URL.
+	 */
+	protected function get_fallback_script_url() : string {
+		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+			return $this->context->url( str_replace( '/js/', '/js/src/', static::FALLBACK_SCRIPT_PATH ) );
+		}
+
+		return $this->context->url( static::FALLBACK_SCRIPT_PATH );
 	}
 }

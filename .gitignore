@@ -18,6 +18,15 @@ local.properties
 nbproject/
 
 ############
+## Build
+############
+
+assets/js/*
+!assets/js/src
+assets/images/*
+!assets/images/src
+
+############
 ## Vendor
 ############
 

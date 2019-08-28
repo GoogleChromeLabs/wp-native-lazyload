@@ -1,0 +1,33 @@
+{
+  "name": "native-lazyload",
+  "version": "1.0.0",
+  "description": "Lazy-loads media using the native browser feature.",
+  "author": "Google",
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://wordpress.org/plugins/native-lazyload",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoogleChromeLabs/wp-native-lazyload.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GoogleChromeLabs/wp-native-lazyload/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.5.4",
+    "@wordpress/babel-preset-default": "^4.3.0",
+    "@wordpress/eslint-plugin": "^2.4.0",
+    "@wordpress/scripts": "^3.3.0",
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.16.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-jest": "^22.15.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "scripts": {
+    "build": "webpack -p --mode=production --config='./webpack.config.js'",
+    "lint": "eslint ."
+  }
+}

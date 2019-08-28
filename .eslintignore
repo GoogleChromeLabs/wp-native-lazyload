@@ -1,0 +1,4 @@
+/assets/*
+!/assets/js/src/*
+/node_modules/*
+/vendor/*

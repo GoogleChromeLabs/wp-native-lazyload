@@ -8,7 +8,7 @@ cache:
 matrix:
   include:
     - php: 7.3
-      env: UNIT=1 PHPLINT=1 PHPCS=1 COVERAGE=1
+      env: UNIT=1 PHPLINT=1 PHPCS=1 COVERAGE=1 JSLINT=1
     - php: 7.0
       env: UNIT=1 PHPLINT=1
       dist: trusty
@@ -54,6 +54,8 @@ before_install:
         PHPUNIT_BIN="vendor/bin/phpunit"
         ;;
     esac
+  - npm install
+  - npm run build
 before_script:
   - |
     if [[ "$INTEGRATION" == "1" ]]; then
@@ -83,6 +85,10 @@ script:
   - |
     if [[ "$PHPCS" == "1" ]]; then
       composer run-script phpcs
+    fi
+  - |
+    if [[ "$JSLINT" == "1" ]]; then
+      npm run lint
     fi
   - |
     if [[ "$UNIT" == "1" ]]; then
