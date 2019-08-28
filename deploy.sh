@@ -108,6 +108,7 @@ echo "Done."
 printf "Removing unnecessary source and test files..."
 rm CONTRIBUTING.md
 rm LICENSE.md
+rm LICENSE
 rm README.md
 rm -rf .github
 rm -rf node_modules
