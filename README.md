@@ -8,6 +8,14 @@ Lazy-loads media using the native browser feature. [Learn more about the new `lo
 
 If the `loading` attribute is not supported by the browser, the plugin falls back to a JavaScript solution based on `IntersectionObserver`.
 
+## "Native" means "Fast"
+
+If you have found your way over here, you are probably aware of how crucial performance is for a website's user experience and success. You might also know that lazy-loading is a key feature to improve said performance. However, the solutions for lazy-loading so far still added a bit of overhead themselves, since they relied on loading, parsing and running custom JavaScript logic, that may be more or less heavy on performance.
+
+This plugin largely does away with this pattern. It relies on the new [`loading`](https://github.com/whatwg/html/pull/3752) attribute, which makes lazy-loading a native browser functionality. The attribute is already supported by Chrome, and will be rolled out to other browsers over time. The solution being "native" means that it does not rely on custom JavaScript logic, and thus is more lightweight. And "more lightweight" means "faster".
+
+Last but not least, a neat thing to keep in mind is that this plugin will essentially improve itself over time, as more browsers roll out support for the `loading` attribute.
+
 ## Requirements
 
 * WordPress >= 4.7

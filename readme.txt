@@ -17,6 +17,16 @@ Lazy-loads media using the native browser feature. [Learn more about the new `lo
 
 If the `loading` attribute is not supported by the browser, the plugin falls back to a JavaScript solution based on `IntersectionObserver`.
 
+= "Native" means "Fast" =
+
+If you have found your way over here, you are probably aware of how crucial performance is for a website's user experience and success. You might also know that lazy-loading is a key feature to improve said performance. However, the solutions for lazy-loading so far still added a bit of overhead themselves, since they relied on loading, parsing and running custom JavaScript logic, that may be more or less heavy on performance.
+
+This plugin largely does away with this pattern. It relies on the new [`loading`](https://github.com/whatwg/html/pull/3752) attribute, which makes lazy-loading a native browser functionality. The attribute is already supported by Chrome, and will be rolled out to other browsers over time. The solution being "native" means that it does not rely on custom JavaScript logic, and thus is more lightweight. And "more lightweight" means "faster".
+
+Last but not least, a neat thing to keep in mind is that this plugin will essentially improve itself over time, as more browsers roll out support for the `loading` attribute.
+
+= Usage =
+
 Just activate the plugin, and all your images and iframes in post content will be loaded lazily.
 
 == Installation ==
@@ -34,7 +44,7 @@ This plugin does not have a settings screen. Just by activating it, the plugin w
 
 You can add a class `skip-lazy` to indicate to the plugin you would like to skip lazy-loading for this image or iframe.
 
-= This plugin loads an extra JavaScript file! I don't want that. =
+= This plugin still loads an extra JavaScript file! I don't want that. =
 
 This is perfectly fair. Note that the plugin only loads the JavaScript file as a fallback for when the user's browser does not support the native `loading` attribute yet. The file includes logic to still autoload the image in a non-native way. If you prefer to purely rely on the `loading` attribute and not provide any fallback, you can easily disable it by adding a line `add_filter( 'native_lazyload_fallback_script_enabled', '__return_false' )` somewhere in your site's codebase.
 
