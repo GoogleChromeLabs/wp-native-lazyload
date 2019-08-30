@@ -4,7 +4,7 @@
  *
  * @package   Google\Native_Lazyload
  * @copyright 2019 Google LLC
- * @license   GNU General Public License v2 (or later)
+ * @license   https://www.apache.org/licenses/LICENSE-2.0 Apache License 2.0
  * @link      https://wordpress.org/plugins/native-lazyload
  *
  * @wordpress-plugin
@@ -14,8 +14,8 @@
  * Version:     1.0.0
  * Author:      Google
  * Author URI:  https://opensource.google.com
- * License:     GNU General Public License v2 (or later)
- * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * License:     Apache License 2.0
+ * License URI: https://www.apache.org/licenses/LICENSE-2.0
  * Text Domain: native-lazyload
  */
 

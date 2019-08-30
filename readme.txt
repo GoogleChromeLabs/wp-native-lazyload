@@ -5,8 +5,8 @@ Requires at least: 4.7
 Tested up to:      5.2
 Requires PHP:      7.0
 Stable tag:        1.0.0
-License:           GNU General Public License v2 (or later)
-License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+License:           Apache License 2.0
+License URI:       https://www.apache.org/licenses/LICENSE-2.0
 Tags:              lazyload, lazy, load, native, loading, images, iframes
 
 Lazy-loads media using the native browser feature.
