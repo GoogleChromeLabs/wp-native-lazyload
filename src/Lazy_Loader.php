@@ -184,7 +184,9 @@ class Lazy_Loader {
 
 				// If JavaScript fallback attributes are present, add a <noscript> fallback.
 				if ( isset( $new_attributes['data-src'] ) ) {
-					$output .= sprintf( '<noscript>%s</noscript>', $matches[0] );
+					$noscript_tag = str_replace( '<' . $matches[1] . ' ', '<' . $matches[1] . ' loading="lazy" ', $matches[0] );
+
+					$output .= sprintf( '<noscript>%s</noscript>', $noscript_tag );
 				}
 
 				return $output;

@@ -130,19 +130,19 @@ class Lazy_Loader_Tests extends Unit_Test_Case {
 		return [
 			[
 				'<img src="my-image.jpg">',
-				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" class="lazy" loading="lazy" data-src="my-image.jpg"><noscript><img src="my-image.jpg"></noscript>',
+				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" class="lazy" loading="lazy" data-src="my-image.jpg"><noscript><img loading="lazy" src="my-image.jpg"></noscript>',
 			],
 			[
 				'<img src="my-image.jpg" alt="An alt attribute">',
-				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" alt="An alt attribute" class="lazy" loading="lazy" data-src="my-image.jpg"><noscript><img src="my-image.jpg" alt="An alt attribute"></noscript>',
+				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" alt="An alt attribute" class="lazy" loading="lazy" data-src="my-image.jpg"><noscript><img loading="lazy" src="my-image.jpg" alt="An alt attribute"></noscript>',
 			],
 			[
 				'<img src="my-image.jpg" class="some-class">',
-				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" class="some-class lazy" loading="lazy" data-src="my-image.jpg"><noscript><img src="my-image.jpg" class="some-class"></noscript>',
+				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" class="some-class lazy" loading="lazy" data-src="my-image.jpg"><noscript><img loading="lazy" src="my-image.jpg" class="some-class"></noscript>',
 			],
 			[
 				'<img src="my-image.jpg" srcset="a-srcset" sizes="some-sizes"/>',
-				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" class="lazy" loading="lazy" data-src="my-image.jpg" data-srcset="a-srcset" data-sizes="some-sizes"/><noscript><img src="my-image.jpg" srcset="a-srcset" sizes="some-sizes"/></noscript>',
+				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" class="lazy" loading="lazy" data-src="my-image.jpg" data-srcset="a-srcset" data-sizes="some-sizes"/><noscript><img loading="lazy" src="my-image.jpg" srcset="a-srcset" sizes="some-sizes"/></noscript>',
 			],
 			[
 				'<img src="my-image.jpg" class="skip-lazy">',

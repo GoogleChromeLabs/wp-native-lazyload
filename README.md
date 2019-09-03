@@ -6,7 +6,7 @@
 
 Lazy-loads media using the native browser feature. [Learn more about the new `loading` attribute](https://web.dev/native-lazy-loading) or [view the WordPress core ticket](https://core.trac.wordpress.org/ticket/44427) where inclusion of a similar implementation in WordPress core itself is being discussed.
 
-If the `loading` attribute is not supported by the browser, the plugin falls back to a JavaScript solution based on `IntersectionObserver`.
+If the `loading` attribute is not supported by the browser, the plugin falls back to a JavaScript solution based on `IntersectionObserver`. For the case that JavaScript is disabled, but the `loading` attribute _is_ supported by the browser, a `noscript` variant of the respective element will be added that also includes the `loading` attribute without any further changes.
 
 ## "Native" means "Fast"
 
