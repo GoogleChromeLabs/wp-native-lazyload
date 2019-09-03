@@ -166,4 +166,81 @@ class Lazy_Loader_Tests extends Unit_Test_Case {
 			],
 		];
 	}
+
+	/**
+	 * @dataProvider data_filter_add_lazyload_placeholders_with_fallback_disabled
+	 */
+	public function test_filter_add_lazyload_placeholders_with_fallback_disabled( $input, $expected ) {
+		Functions\when( 'apply_filters' )->alias(
+			function( string $filter, $value ) {
+				if ( 'native_lazyload_fallback_script_enabled' === $filter ) {
+					return false;
+				}
+				return $value;
+			}
+		);
+		Functions\when( 'is_feed' )->justReturn( false );
+		Functions\when( 'is_preview' )->justReturn( false );
+		Functions\when( 'wp_allowed_protocols' )->justReturn( [] );
+		Functions\when( 'wp_kses_hair' )->alias(
+			function( $string ) {
+				$parts = array_filter( explode( '" ', $string ) );
+				return array_reduce(
+					$parts,
+					function( array $carry, string $part ) {
+						list( $name, $value ) = explode( '=', trim( $part ) );
+						$value = trim( $value, '"\'' );
+
+						$carry[ $name ] = [ 'value' => $value ];
+						return $carry;
+					},
+					[]
+				);
+			}
+		);
+
+		$output = $this->lazy_loader->filter_add_lazyload_placeholders( $input );
+		$this->assertSame( $expected, $output );
+	}
+
+	public function data_filter_add_lazyload_placeholders_with_fallback_disabled() {
+		return [
+			[
+				'<img src="my-image.jpg">',
+				'<img src="my-image.jpg" class="lazy" loading="lazy">',
+			],
+			[
+				'<img src="my-image.jpg" alt="An alt attribute">',
+				'<img src="my-image.jpg" alt="An alt attribute" class="lazy" loading="lazy">',
+			],
+			[
+				'<img src="my-image.jpg" class="some-class">',
+				'<img src="my-image.jpg" class="some-class lazy" loading="lazy">',
+			],
+			[
+				'<img src="my-image.jpg" srcset="a-srcset" sizes="some-sizes"/>',
+				'<img src="my-image.jpg" srcset="a-srcset" sizes="some-sizes" class="lazy" loading="lazy"/>',
+			],
+			[
+				'<img src="my-image.jpg" class="skip-lazy">',
+				'<img src="my-image.jpg" class="skip-lazy">',
+			],
+			[
+				'<img>',
+				'<img>',
+			],
+			[
+				'<iframe src="https://example.com"></iframe>',
+				'<iframe src="https://example.com" class="lazy" loading="lazy"></iframe>',
+			],
+			[
+				'<iframe src="https://example.com" class="some-class"></iframe>',
+				'<iframe src="https://example.com" class="some-class lazy" loading="lazy"></iframe>',
+			],
+			[
+				'<iframe src="https://example.com" class="skip-lazy"></iframe>',
+				'<iframe src="https://example.com" class="skip-lazy"></iframe>',
+			],
+		];
+	}
 }
