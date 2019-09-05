@@ -12,7 +12,6 @@
 
     <!-- WordPress Coding Standard -->
     <rule ref="WordPress">
-        <exclude name="WordPress.VIP.RestrictedFunctions"/>
         <exclude name="WordPress.Files.FileName"/>
     </rule>
 
