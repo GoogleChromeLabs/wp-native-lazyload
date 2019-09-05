@@ -17,6 +17,3 @@ if ( function_exists( 'xdebug_disable' ) ) {
 }
 
 require_once TESTS_PLUGIN_DIR . '/vendor/autoload.php';
-
-// PHPUnit < 6.0 compatibility shim.
-require_once __DIR__ . '/phpunit-compat.php';
