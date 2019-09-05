@@ -4,7 +4,7 @@
   "description": "Lazy-loads media using the native browser feature.",
   "author": "Google",
   "license": "Apache-2.0",
-  "homepage": "https://wordpress.org/plugins/native-lazyload",
+  "homepage": "https://wordpress.org/plugins/native-lazyload/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GoogleChromeLabs/wp-native-lazyload.git"

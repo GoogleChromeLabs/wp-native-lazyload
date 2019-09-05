@@ -5,11 +5,11 @@
  * @package   Google\Native_Lazyload
  * @copyright 2019 Google LLC
  * @license   https://www.apache.org/licenses/LICENSE-2.0 Apache License 2.0
- * @link      https://wordpress.org/plugins/native-lazyload
+ * @link      https://wordpress.org/plugins/native-lazyload/
  *
  * @wordpress-plugin
  * Plugin Name: Native Lazyload
- * Plugin URI:  https://wordpress.org/plugins/native-lazyload
+ * Plugin URI:  https://wordpress.org/plugins/native-lazyload/
  * Description: Lazy-loads media using the native browser feature.
  * Version:     1.0.0
  * Author:      Google

@@ -5,7 +5,7 @@
  * @package   Google\Native_Lazyload
  * @copyright 2019 Google LLC
  * @license   https://www.apache.org/licenses/LICENSE-2.0 Apache License 2.0
- * @link      https://wordpress.org/plugins/native-lazyload
+ * @link      https://wordpress.org/plugins/native-lazyload/
  */
 
 if ( class_exists( 'PHPUnit_Framework_TestCase' ) && ! class_exists( 'PHPUnit\Framework\TestCase' ) ) {

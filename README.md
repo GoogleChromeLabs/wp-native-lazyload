@@ -18,7 +18,7 @@ Last but not least, a neat thing to keep in mind is that this plugin will essent
 
 ## Download
 
-The easiest way to get the plugin is to install it from your WordPress admin dashboard, or manually [download it from wordpress.org](https://wordpress.org/plugins/native-lazyload). Alternatively, you can also clone or download this repository to get the development version, but you will need to run a few commands to process assets and set up the autoloader:
+The easiest way to get the plugin is to install it from your WordPress admin dashboard, or manually [download it from wordpress.org](https://wordpress.org/plugins/native-lazyload/). Alternatively, you can also clone or download this repository to get the development version, but you will need to run a few commands to process assets and set up the autoloader:
 
 1. `composer install`
 2. `npm install`
