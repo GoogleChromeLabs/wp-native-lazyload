@@ -39,6 +39,12 @@ function native_lazyload_load() {
 
 	if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 		require __DIR__ . '/vendor/autoload.php';
+	} elseif ( ! class_exists( 'Google\\Native_Lazyload\\Plugin' ) ) {
+		$plugin_dir = plugin_dir_path( __FILE__ );
+		require_once $plugin_dir . 'src/Plugin.php';
+		require_once $plugin_dir . 'src/Context.php';
+		require_once $plugin_dir . 'src/Lazy_Loader.php';
+		require_once $plugin_dir . 'src/Lazy_Load_Script.php';
 	}
 
 	call_user_func( [ 'Google\\Native_Lazyload\\Plugin', 'load' ], __FILE__ );

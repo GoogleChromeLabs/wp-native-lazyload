@@ -101,7 +101,7 @@ cd $SVNPATH/trunk/
 
 printf "Building assets..."
 rm -rf vendor
-composer install --no-dev
+composer install
 rm -rf node_modules
 npm install
 npm run build
@@ -115,6 +115,7 @@ rm README.md
 rm -rf .github
 rm -rf node_modules
 rm -rf tests
+rm -rf vendor
 echo "Done."
 
 printf "Ignoring GitHub specific files and deployment script..."
