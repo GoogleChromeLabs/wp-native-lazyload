@@ -48,8 +48,6 @@
     "phplint": "find -L .  -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
     "phpcs": "@php ./vendor/bin/phpcs",
     "phpunit": "@php ./vendor/bin/phpunit",
-    "phpunit-cov": "@php ./vendor/bin/phpunit --coverage-clover tests/logs/clover.xml",
-    "phpunit-integration": "@php ./vendor/bin/phpunit -c phpunit-integration.xml.dist",
-    "phpunit-integration-cov": "@php ./vendor/bin/phpunit -c phpunit-integration.xml.dist --coverage-clover tests/logs/clover.xml"
+    "phpunit-cov": "@php ./vendor/bin/phpunit --coverage-clover tests/logs/clover.xml"
   }
 }
