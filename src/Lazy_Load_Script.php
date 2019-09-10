@@ -48,11 +48,15 @@ class Lazy_Load_Script {
 	 * @since 1.0.0
 	 */
 	public function print_script() {
+		// The script is normally loaded after all relevant markup has been printed, so it can run immediately.
+		// However, to cater for third-party plugins that may move the script to e.g. the <head>, the script will
+		// wait until 'DOMContentLoaded' if it doesn't detect any images to lazy-load initially.
 		?>
 <script type="text/javascript">
-if ( 'loading' in HTMLImageElement.prototype ) {
-	( function() {
-		var lazyElements = [].slice.call( document.querySelectorAll( '.lazy' ) );
+var nativeLazyloadInitialize = function() {
+	var lazyElements, script;
+	if ( 'loading' in HTMLImageElement.prototype ) {
+		lazyElements = [].slice.call( document.querySelectorAll( '.lazy' ) );
 		lazyElements.forEach( function( element ) {
 			if ( ! element.dataset.src ) {
 				return;
@@ -65,15 +69,19 @@ if ( 'loading' in HTMLImageElement.prototype ) {
 				element.sizes = element.dataset.sizes;
 			}
 		} );
-	} )();
-} else {
-	( function() {
-		var script = document.createElement( 'script' );
+	} else if ( ! document.querySelector( 'script#native-lazyload-fallback' ) ) {
+		script = document.createElement( 'script' );
+		script.id = 'native-lazyload-fallback';
 		script.type = 'text/javascript';
 		script.src = '<?php echo esc_js( $this->get_fallback_script_url() ); ?>';
 		script.defer = true;
 		document.body.appendChild( script );
-	} )();
+	}
+};
+if ( document.querySelector( '.lazy' ) ) {
+	nativeLazyloadInitialize();
+} else {
+	window.addEventListener( 'DOMContentLoaded', nativeLazyloadInitialize );
 }
 </script>
 		<?php
