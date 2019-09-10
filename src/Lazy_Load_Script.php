@@ -78,7 +78,7 @@ var nativeLazyloadInitialize = function() {
 		document.body.appendChild( script );
 	}
 };
-if ( document.querySelector( '.lazy' ) ) {
+if ( document.readyState === 'complete' || document.readyState === 'interactive' ) {
 	nativeLazyloadInitialize();
 } else {
 	window.addEventListener( 'DOMContentLoaded', nativeLazyloadInitialize );
