@@ -130,19 +130,19 @@ class Lazy_Loader_Tests extends Unit_Test_Case {
 		return [
 			[
 				'<img src="my-image.jpg">',
-				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" class="lazy" loading="lazy" data-src="my-image.jpg"><noscript><img loading="lazy" src="my-image.jpg"></noscript>',
+				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" loading="lazy" class="native-lazyload-js-fallback" data-src="my-image.jpg"><noscript><img loading="lazy" src="my-image.jpg"></noscript>',
 			],
 			[
 				'<img src="my-image.jpg" alt="An alt attribute">',
-				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" alt="An alt attribute" class="lazy" loading="lazy" data-src="my-image.jpg"><noscript><img loading="lazy" src="my-image.jpg" alt="An alt attribute"></noscript>',
+				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" alt="An alt attribute" loading="lazy" class="native-lazyload-js-fallback" data-src="my-image.jpg"><noscript><img loading="lazy" src="my-image.jpg" alt="An alt attribute"></noscript>',
 			],
 			[
 				'<img src="my-image.jpg" class="some-class">',
-				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" class="some-class lazy" loading="lazy" data-src="my-image.jpg"><noscript><img loading="lazy" src="my-image.jpg" class="some-class"></noscript>',
+				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" class="some-class native-lazyload-js-fallback" loading="lazy" data-src="my-image.jpg"><noscript><img loading="lazy" src="my-image.jpg" class="some-class"></noscript>',
 			],
 			[
 				'<img src="my-image.jpg" srcset="a-srcset" sizes="some-sizes"/>',
-				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" class="lazy" loading="lazy" data-src="my-image.jpg" data-srcset="a-srcset" data-sizes="some-sizes"/><noscript><img loading="lazy" src="my-image.jpg" srcset="a-srcset" sizes="some-sizes"/></noscript>',
+				'<img src="' . Lazy_Loader::PLACEHOLDER_PATH . '" loading="lazy" class="native-lazyload-js-fallback" data-src="my-image.jpg" data-srcset="a-srcset" data-sizes="some-sizes"/><noscript><img loading="lazy" src="my-image.jpg" srcset="a-srcset" sizes="some-sizes"/></noscript>',
 			],
 			[
 				'<img src="my-image.jpg" class="skip-lazy">',
@@ -154,11 +154,11 @@ class Lazy_Loader_Tests extends Unit_Test_Case {
 			],
 			[
 				'<iframe src="https://example.com"></iframe>',
-				'<iframe src="https://example.com" class="lazy" loading="lazy"></iframe>',
+				'<iframe src="https://example.com" loading="lazy"></iframe>',
 			],
 			[
 				'<iframe src="https://example.com" class="some-class"></iframe>',
-				'<iframe src="https://example.com" class="some-class lazy" loading="lazy"></iframe>',
+				'<iframe src="https://example.com" class="some-class" loading="lazy"></iframe>',
 			],
 			[
 				'<iframe src="https://example.com" class="skip-lazy"></iframe>',
@@ -207,19 +207,19 @@ class Lazy_Loader_Tests extends Unit_Test_Case {
 		return [
 			[
 				'<img src="my-image.jpg">',
-				'<img src="my-image.jpg" class="lazy" loading="lazy">',
+				'<img src="my-image.jpg" loading="lazy">',
 			],
 			[
 				'<img src="my-image.jpg" alt="An alt attribute">',
-				'<img src="my-image.jpg" alt="An alt attribute" class="lazy" loading="lazy">',
+				'<img src="my-image.jpg" alt="An alt attribute" loading="lazy">',
 			],
 			[
 				'<img src="my-image.jpg" class="some-class">',
-				'<img src="my-image.jpg" class="some-class lazy" loading="lazy">',
+				'<img src="my-image.jpg" class="some-class" loading="lazy">',
 			],
 			[
 				'<img src="my-image.jpg" srcset="a-srcset" sizes="some-sizes"/>',
-				'<img src="my-image.jpg" srcset="a-srcset" sizes="some-sizes" class="lazy" loading="lazy"/>',
+				'<img src="my-image.jpg" srcset="a-srcset" sizes="some-sizes" loading="lazy"/>',
 			],
 			[
 				'<img src="my-image.jpg" class="skip-lazy">',
@@ -231,11 +231,11 @@ class Lazy_Loader_Tests extends Unit_Test_Case {
 			],
 			[
 				'<iframe src="https://example.com"></iframe>',
-				'<iframe src="https://example.com" class="lazy" loading="lazy"></iframe>',
+				'<iframe src="https://example.com" loading="lazy"></iframe>',
 			],
 			[
 				'<iframe src="https://example.com" class="some-class"></iframe>',
-				'<iframe src="https://example.com" class="some-class lazy" loading="lazy"></iframe>',
+				'<iframe src="https://example.com" class="some-class" loading="lazy"></iframe>',
 			],
 			[
 				'<iframe src="https://example.com" class="skip-lazy"></iframe>',

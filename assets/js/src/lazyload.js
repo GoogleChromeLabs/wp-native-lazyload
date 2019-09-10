@@ -1,5 +1,5 @@
 /**
- * Lazy-load script for anything with a 'lazy' class.
+ * Lazy-load script for anything with a 'native-lazyload-js-fallback' class.
  *
  * @link https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
  *
@@ -18,7 +18,7 @@
  * limitations under the License.
  */
 ( function() {
-	let lazyElements = [].slice.call( document.querySelectorAll( '.lazy' ) );
+	let lazyElements = [].slice.call( document.querySelectorAll( '.native-lazyload-js-fallback' ) );
 
 	if ( 'IntersectionObserver' in window ) {
 		const lazyObserver = new IntersectionObserver( function( entries ) {
@@ -36,6 +36,7 @@
 					if ( lazyElement.dataset.sizes ) {
 						lazyElement.sizes = lazyElement.dataset.sizes;
 					}
+					lazyElement.classList.remove( 'native-lazyload-js-fallback' );
 					lazyObserver.unobserve( lazyElement );
 				}
 			} );
@@ -63,6 +64,7 @@
 								if ( lazyElement.dataset.sizes ) {
 									lazyElement.sizes = lazyElement.dataset.sizes;
 								}
+								lazyElement.classList.remove( 'native-lazyload-js-fallback' );
 							}
 
 							lazyElements = lazyElements.filter( function( element ) {
