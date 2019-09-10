@@ -67,6 +67,11 @@ class Lazy_Loader {
 	 * @since 1.0.0
 	 */
 	public function register() {
+		// Don't do anything if an AJAX request because lack of context predictability.
+		if ( $this->context->is_ajax() ) {
+			return;
+		}
+
 		// Don't do anything for AMP because it would be unnecessary.
 		if ( $this->context->is_amp() ) {
 			return;
