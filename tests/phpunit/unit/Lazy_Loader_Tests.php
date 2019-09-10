@@ -29,13 +29,16 @@ class Lazy_Loader_Tests extends Unit_Test_Case {
 
 		$this->context = $this->getMockBuilder( Context::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'basename', 'path', 'url', 'is_amp' ] )
+			->setMethods( [ 'basename', 'path', 'url', 'is_ajax', 'is_amp' ] )
 			->getMock();
 
 		$this->lazy_loader = new Lazy_Loader( $this->context );
 	}
 
 	public function test_register() {
+		$this->context->expects( $this->once() )
+			->method( 'is_ajax' )
+			->will( $this->returnValue( false ) );
 		$this->context->expects( $this->once() )
 			->method( 'is_amp' )
 			->will( $this->returnValue( false ) );
@@ -51,6 +54,9 @@ class Lazy_Loader_Tests extends Unit_Test_Case {
 	}
 
 	public function test_register_with_fallback_disabled() {
+		$this->context->expects( $this->once() )
+			->method( 'is_ajax' )
+			->will( $this->returnValue( false ) );
 		$this->context->expects( $this->once() )
 			->method( 'is_amp' )
 			->will( $this->returnValue( false ) );
