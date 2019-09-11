@@ -4,7 +4,7 @@ Contributors:      google, flixos90
 Requires at least: 4.7
 Tested up to:      5.2
 Requires PHP:      7.0
-Stable tag:        1.0.0
+Stable tag:        1.0.1
 License:           Apache License 2.0
 License URI:       https://www.apache.org/licenses/LICENSE-2.0
 Tags:              lazyload, lazy, load, native, loading, images, iframes
@@ -63,6 +63,12 @@ If you have some ideas to improve the plugin or to solve a bug, feel free to rai
 You can also contribute to the plugin by translating it. Simply visit [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/native-lazyload) to get started.
 
 == Changelog ==
+
+= 1.0.1 =
+
+* Improve compatibility with other plugins by using more specific class and only adding it for JS fallback.
+* Run lazy-load script on `DOMContentLoaded` when necessary to improve compatibility with plugins like Autoptimize.
+* Do not transform elements inside an AJAX response due to lack of predictability of the context and script execution.
 
 = 1.0.0 =
 

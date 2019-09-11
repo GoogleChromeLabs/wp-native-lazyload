@@ -74,7 +74,7 @@ class Context {
 	/**
 	 * Checks whether the current request is an AJAX request.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return bool True if an AJAX request, false otherwise.
 	 */
