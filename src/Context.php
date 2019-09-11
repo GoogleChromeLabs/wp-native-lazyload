@@ -72,6 +72,22 @@ class Context {
 	}
 
 	/**
+	 * Checks whether the current request is an AJAX request.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return bool True if an AJAX request, false otherwise.
+	 */
+	public function is_ajax() : bool {
+		if ( wp_doing_ajax() ) {
+			return true;
+		}
+
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		return ! empty( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && strtolower( wp_unslash( $_SERVER['HTTP_X_REQUESTED_WITH'] ) ) === 'xmlhttprequest';
+	}
+
+	/**
 	 * Checks whether the current request is for an AMP page.
 	 *
 	 * @since 1.0.0

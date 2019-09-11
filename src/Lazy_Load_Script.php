@@ -57,7 +57,7 @@ class Lazy_Load_Script {
 	var nativeLazyloadInitialize = function() {
 		var lazyElements, script;
 		if ( 'loading' in HTMLImageElement.prototype ) {
-			lazyElements = [].slice.call( document.querySelectorAll( '.lazy' ) );
+			lazyElements = [].slice.call( document.querySelectorAll( '.native-lazyload-js-fallback' ) );
 			lazyElements.forEach( function( element ) {
 				if ( ! element.dataset.src ) {
 					return;
@@ -72,6 +72,7 @@ class Lazy_Load_Script {
 					element.sizes = element.dataset.sizes;
 					delete element.dataset.sizes;
 				}
+				element.classList.remove( 'native-lazyload-js-fallback' );
 			} );
 		} else if ( ! document.querySelector( 'script#native-lazyload-fallback' ) ) {
 			script = document.createElement( 'script' );
@@ -100,7 +101,7 @@ class Lazy_Load_Script {
 	public function print_style() {
 		?>
 <style type="text/css">
-.no-js .lazy[data-src] {
+.no-js .native-lazyload-js-fallback {
 	display: none;
 }
 </style>
