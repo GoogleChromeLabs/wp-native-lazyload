@@ -30,11 +30,14 @@
 						return;
 					}
 					lazyElement.src = lazyElement.dataset.src;
+					delete lazyElement.dataset.src;
 					if ( lazyElement.dataset.srcset ) {
 						lazyElement.srcset = lazyElement.dataset.srcset;
+						delete lazyElement.dataset.srcset;
 					}
 					if ( lazyElement.dataset.sizes ) {
 						lazyElement.sizes = lazyElement.dataset.sizes;
+						delete lazyElement.dataset.sizes;
 					}
 					lazyElement.classList.remove( 'native-lazyload-js-fallback' );
 					lazyObserver.unobserve( lazyElement );
@@ -58,11 +61,14 @@
 						if ( ( lazyElement.getBoundingClientRect().top <= window.innerHeight && 0 <= lazyElement.getBoundingClientRect().bottom ) && 'none' !== getComputedStyle( lazyElement ).display ) {
 							if ( lazyElement.dataset.src ) {
 								lazyElement.src = lazyElement.dataset.src;
+								delete lazyElement.dataset.src;
 								if ( lazyElement.dataset.srcset ) {
 									lazyElement.srcset = lazyElement.dataset.srcset;
+									delete lazyElement.dataset.srcset;
 								}
 								if ( lazyElement.dataset.sizes ) {
 									lazyElement.sizes = lazyElement.dataset.sizes;
+									delete lazyElement.dataset.sizes;
 								}
 								lazyElement.classList.remove( 'native-lazyload-js-fallback' );
 							}

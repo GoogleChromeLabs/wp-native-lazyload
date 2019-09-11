@@ -45,37 +45,49 @@ class Lazy_Load_Script {
 	 * If the 'loading' attribute is supported by the browser, all elements to lazy-load are prepared for the native
 	 * functionality. Otherwise, the fallback script is loaded into the page.
 	 *
+	 * For maximum compatibility, the script will run once the DOM is ready.
+	 *
 	 * @since 1.0.0
 	 */
 	public function print_script() {
 		?>
 <script type="text/javascript">
-if ( 'loading' in HTMLImageElement.prototype ) {
-	( function() {
-		var lazyElements = [].slice.call( document.querySelectorAll( '.native-lazyload-js-fallback' ) );
-		lazyElements.forEach( function( element ) {
-			if ( ! element.dataset.src ) {
-				return;
-			}
-			element.src = element.dataset.src;
-			if ( element.dataset.srcset ) {
-				element.srcset = element.dataset.srcset;
-			}
-			if ( element.dataset.sizes ) {
-				element.sizes = element.dataset.sizes;
-			}
-			element.classList.remove( 'native-lazyload-js-fallback' );
-		} );
-	} )();
-} else {
-	( function() {
-		var script = document.createElement( 'script' );
-		script.type = 'text/javascript';
-		script.src = '<?php echo esc_js( $this->get_fallback_script_url() ); ?>';
-		script.defer = true;
-		document.body.appendChild( script );
-	} )();
-}
+( function() {
+	var nativeLazyloadInitialize = function() {
+		var lazyElements, script;
+		if ( 'loading' in HTMLImageElement.prototype ) {
+			lazyElements = [].slice.call( document.querySelectorAll( '.native-lazyload-js-fallback' ) );
+			lazyElements.forEach( function( element ) {
+				if ( ! element.dataset.src ) {
+					return;
+				}
+				element.src = element.dataset.src;
+				delete element.dataset.src;
+				if ( element.dataset.srcset ) {
+					element.srcset = element.dataset.srcset;
+					delete element.dataset.srcset;
+				}
+				if ( element.dataset.sizes ) {
+					element.sizes = element.dataset.sizes;
+					delete element.dataset.sizes;
+				}
+				element.classList.remove( 'native-lazyload-js-fallback' );
+			} );
+		} else if ( ! document.querySelector( 'script#native-lazyload-fallback' ) ) {
+			script = document.createElement( 'script' );
+			script.id = 'native-lazyload-fallback';
+			script.type = 'text/javascript';
+			script.src = '<?php echo esc_js( $this->get_fallback_script_url() ); ?>';
+			script.defer = true;
+			document.body.appendChild( script );
+		}
+	};
+	if ( document.readyState === 'complete' || document.readyState === 'interactive' ) {
+		nativeLazyloadInitialize();
+	} else {
+		window.addEventListener( 'DOMContentLoaded', nativeLazyloadInitialize );
+	}
+}() );
 </script>
 		<?php
 	}
