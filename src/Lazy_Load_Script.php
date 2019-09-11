@@ -82,7 +82,7 @@ class Lazy_Load_Script {
 			document.body.appendChild( script );
 		}
 	};
-	if ( document.querySelector( '.lazy' ) ) {
+	if ( document.readyState === 'complete' || document.readyState === 'interactive' ) {
 		nativeLazyloadInitialize();
 	} else {
 		window.addEventListener( 'DOMContentLoaded', nativeLazyloadInitialize );
