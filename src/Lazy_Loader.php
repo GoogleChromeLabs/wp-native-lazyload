@@ -24,7 +24,7 @@ class Lazy_Loader {
 	const LAZYLOAD_FALLBACK_TAGS = 'img';
 
 	// Class to add to all elements to lazy-load.
-	const LAZYLOAD_CLASS = 'lazy';
+	const LAZYLOAD_FALLBACK_CLASS = 'native-lazyload-js-fallback';
 
 	// Class to interpret as blacklist indicator for elements to not lazy-load.
 	const SKIP_LAZYLOAD_CLASS = 'skip-lazy';
@@ -220,13 +220,6 @@ class Lazy_Loader {
 			return $attributes;
 		}
 
-		// Add the lazy class to the img element.
-		if ( ! empty( $attributes['class'] ) ) {
-			$attributes['class'] .= ' ' . static::LAZYLOAD_CLASS;
-		} else {
-			$attributes['class'] = static::LAZYLOAD_CLASS;
-		}
-
 		// Native browser lazy-loading.
 		$attributes['loading'] = 'lazy';
 
@@ -248,6 +241,13 @@ class Lazy_Loader {
 	 * @return array Filtered attributes prepared for lazy-loading.
 	 */
 	protected function filter_lazyload_attributes_for_js_fallback( array $attributes, string $tag = 'img' ) : array {
+		// Add the JS fallback indicator class to the img element.
+		if ( ! empty( $attributes['class'] ) ) {
+			$attributes['class'] .= ' ' . static::LAZYLOAD_FALLBACK_CLASS;
+		} else {
+			$attributes['class'] = static::LAZYLOAD_FALLBACK_CLASS;
+		}
+
 		// Set data-src to the original source uri.
 		$attributes['data-src'] = $attributes['src'];
 
