@@ -53,36 +53,41 @@ class Lazy_Load_Script {
 		// wait until 'DOMContentLoaded' if it doesn't detect any images to lazy-load initially.
 		?>
 <script type="text/javascript">
-var nativeLazyloadInitialize = function() {
-	var lazyElements, script;
-	if ( 'loading' in HTMLImageElement.prototype ) {
-		lazyElements = [].slice.call( document.querySelectorAll( '.lazy' ) );
-		lazyElements.forEach( function( element ) {
-			if ( ! element.dataset.src ) {
-				return;
-			}
-			element.src = element.dataset.src;
-			if ( element.dataset.srcset ) {
-				element.srcset = element.dataset.srcset;
-			}
-			if ( element.dataset.sizes ) {
-				element.sizes = element.dataset.sizes;
-			}
-		} );
-	} else if ( ! document.querySelector( 'script#native-lazyload-fallback' ) ) {
-		script = document.createElement( 'script' );
-		script.id = 'native-lazyload-fallback';
-		script.type = 'text/javascript';
-		script.src = '<?php echo esc_js( $this->get_fallback_script_url() ); ?>';
-		script.defer = true;
-		document.body.appendChild( script );
+( function() {
+	var nativeLazyloadInitialize = function() {
+		var lazyElements, script;
+		if ( 'loading' in HTMLImageElement.prototype ) {
+			lazyElements = [].slice.call( document.querySelectorAll( '.lazy' ) );
+			lazyElements.forEach( function( element ) {
+				if ( ! element.dataset.src ) {
+					return;
+				}
+				element.src = element.dataset.src;
+				delete element.dataset.src;
+				if ( element.dataset.srcset ) {
+					element.srcset = element.dataset.srcset;
+					delete element.dataset.srcset;
+				}
+				if ( element.dataset.sizes ) {
+					element.sizes = element.dataset.sizes;
+					delete element.dataset.sizes;
+				}
+			} );
+		} else if ( ! document.querySelector( 'script#native-lazyload-fallback' ) ) {
+			script = document.createElement( 'script' );
+			script.id = 'native-lazyload-fallback';
+			script.type = 'text/javascript';
+			script.src = '<?php echo esc_js( $this->get_fallback_script_url() ); ?>';
+			script.defer = true;
+			document.body.appendChild( script );
+		}
+	};
+	if ( document.querySelector( '.lazy' ) ) {
+		nativeLazyloadInitialize();
+	} else {
+		window.addEventListener( 'DOMContentLoaded', nativeLazyloadInitialize );
 	}
-};
-if ( document.querySelector( '.lazy' ) ) {
-	nativeLazyloadInitialize();
-} else {
-	window.addEventListener( 'DOMContentLoaded', nativeLazyloadInitialize );
-}
+}() );
 </script>
 		<?php
 	}
