@@ -45,12 +45,11 @@ class Lazy_Load_Script {
 	 * If the 'loading' attribute is supported by the browser, all elements to lazy-load are prepared for the native
 	 * functionality. Otherwise, the fallback script is loaded into the page.
 	 *
+	 * For maximum compatibility, the script will run once the DOM is ready.
+	 *
 	 * @since 1.0.0
 	 */
 	public function print_script() {
-		// The script is normally loaded after all relevant markup has been printed, so it can run immediately.
-		// However, to cater for third-party plugins that may move the script to e.g. the <head>, the script will
-		// wait until 'DOMContentLoaded' if it doesn't detect any images to lazy-load initially.
 		?>
 <script type="text/javascript">
 ( function() {
