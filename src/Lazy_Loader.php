@@ -284,7 +284,7 @@ class Lazy_Loader {
 			function( array $attribute ) : string {
 				return $attribute['value'];
 			},
-			wp_kses_hair( $string, wp_allowed_protocols() )
+			wp_kses_hair( $string, array_merge( wp_allowed_protocols(), [ 'data' ] ) )
 		);
 	}
 
