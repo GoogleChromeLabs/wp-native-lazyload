@@ -1,6 +1,6 @@
 {
   "name": "native-lazyload",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Lazy-loads media using the native browser feature.",
   "author": "Google",
   "license": "Apache-2.0",

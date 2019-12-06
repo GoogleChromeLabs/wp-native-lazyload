@@ -11,7 +11,7 @@
  * Plugin Name: Native Lazyload
  * Plugin URI:  https://wordpress.org/plugins/native-lazyload/
  * Description: Lazy-loads media using the native browser feature.
- * Version:     1.0.1
+ * Version:     1.0.2
  * Author:      Google
  * Author URI:  https://opensource.google.com
  * License:     Apache License 2.0

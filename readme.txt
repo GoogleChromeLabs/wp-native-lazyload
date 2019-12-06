@@ -2,9 +2,9 @@
 
 Contributors:      google, flixos90
 Requires at least: 4.7
-Tested up to:      5.2
+Tested up to:      5.3
 Requires PHP:      7.0
-Stable tag:        1.0.1
+Stable tag:        1.0.2
 License:           Apache License 2.0
 License URI:       https://www.apache.org/licenses/LICENSE-2.0
 Tags:              lazyload, lazy, load, native, loading, images, iframes
@@ -63,6 +63,12 @@ If you have some ideas to improve the plugin or to solve a bug, feel free to rai
 You can also contribute to the plugin by translating it. Simply visit [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/native-lazyload) to get started.
 
 == Changelog ==
+
+= 1.0.2 =
+
+* Fix broken images which are using data URI scheme (e.g. base64-encoded images). Props [ieim](https://github.com/ieim).
+* Fix images in IE 11 not being loaded until the user starts scrolling. Props [Soean](https://github.com/Soean).
+* Fix image loading script not working in IE10 and other browsers that do not support `dataset`.
 
 = 1.0.1 =
 
