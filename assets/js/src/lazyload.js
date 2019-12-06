@@ -128,6 +128,7 @@
 			}
 		};
 
+		lazyLoad();
 		document.addEventListener( 'scroll', lazyLoad );
 		window.addEventListener( 'resize', lazyLoad );
 		window.addEventListener( 'orientationchange', lazyLoad );
