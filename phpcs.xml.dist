@@ -13,6 +13,7 @@
     <!-- WordPress Coding Standard -->
     <rule ref="WordPress">
         <exclude name="WordPress.Files.FileName"/>
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
     </rule>
 
     <!-- Selected WordPress Coding Standards tweaks -->
