@@ -77,7 +77,7 @@ class Lazy_Load_Script {
 			script = document.createElement( 'script' );
 			script.id = 'native-lazyload-fallback';
 			script.type = 'text/javascript';
-			script.src = '<?php echo esc_js( $this->get_fallback_script_url() ); ?>';
+			script.src = '<?php echo wp_json_encode( esc_url(  $this->get_fallback_script_url() ) ); ?>';
 			script.defer = true;
 			document.body.appendChild( script );
 		}
