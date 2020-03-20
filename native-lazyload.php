@@ -60,7 +60,7 @@ function native_lazyload_display_php_version_notice() {
 	<div class="notice notice-error">
 		<p>
 			<?php
-			echo sprintf(
+			printf(
 				/* translators: 1: required version, 2: currently used version */
 				esc_html__( 'Native Lazyload requires at least PHP version %1$s. Your site is currently running on PHP %2$s.', 'native-lazyload' ),
 				'7.0',
@@ -82,7 +82,7 @@ function native_lazyload_display_wp_version_notice() {
 	<div class="notice notice-error">
 		<p>
 			<?php
-			echo sprintf(
+			printf(
 				/* translators: 1: required version, 2: currently used version */
 				esc_html__( 'Native Lazyload requires at least WordPress version %1$s. Your site is currently running on WordPress %2$s.', 'native-lazyload' ),
 				'4.7',
