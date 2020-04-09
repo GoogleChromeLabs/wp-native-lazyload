@@ -64,7 +64,7 @@ function native_lazyload_display_php_version_notice() {
 				/* translators: 1: required version, 2: currently used version */
 				esc_html__( 'Native Lazyload requires at least PHP version %1$s. Your site is currently running on PHP %2$s.', 'native-lazyload' ),
 				'7.0',
-				phpversion()
+				phpversion() // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 			);
 			?>
 		</p>
