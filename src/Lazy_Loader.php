@@ -265,7 +265,7 @@ class Lazy_Loader {
 
 		// Set placeholder image if applicable.
 		if ( 'img' === $tag ) {
-			$attributes['src'] = $this->context->url( static::PLACEHOLDER_PATH );
+			$attributes['src'] = apply_filters( 'native_lazyload_placeholder', $this->context->url( static::PLACEHOLDER_PATH ), $attributes, $tag );
 		}
 
 		return $attributes;
