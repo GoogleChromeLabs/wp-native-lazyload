@@ -265,6 +265,17 @@ class Lazy_Loader {
 
 		// Set placeholder image if applicable.
 		if ( 'img' === $tag ) {
+			/**
+			 * Filters the placeholder image path.
+			 *
+			 * A custom placeholder image can be provided as an absolute URL string.
+			 *
+			 * @since 1.1.0
+			 *
+			 * @param string $path       Default placeholder path.
+			 * @param array  $attributes Attributes of an element to lazy-load.
+			 * @param string $tag        Tag that the attributes are for.
+			 */
 			$attributes['src'] = apply_filters( 'native_lazyload_placeholder', $this->context->url( static::PLACEHOLDER_PATH ), $attributes, $tag );
 		}
 
