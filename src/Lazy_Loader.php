@@ -26,7 +26,7 @@ class Lazy_Loader {
 	// Class to add to all elements to lazy-load.
 	const LAZYLOAD_FALLBACK_CLASS = 'native-lazyload-js-fallback';
 
-	// Class to interpret as blacklist indicator for elements to not lazy-load.
+	// Class to interpret as exclude indicator for elements to not lazy-load.
 	const SKIP_LAZYLOAD_CLASS = 'skip-lazy';
 
 	// Relative path to the placeholder image file.
@@ -216,7 +216,7 @@ class Lazy_Loader {
 			return $attributes;
 		}
 
-		if ( ! empty( $attributes['class'] ) && $this->has_blacklisted_class( $attributes['class'] ) ) {
+		if ( ! empty( $attributes['class'] ) && $this->has_excluded_class( $attributes['class'] ) ) {
 			return $attributes;
 		}
 
@@ -313,14 +313,14 @@ class Lazy_Loader {
 	}
 
 	/**
-	 * Checks whether a class attribute string contains a class blacklisted for lazy-loading.
+	 * Checks whether a class attribute string contains a class excluded for lazy-loading.
 	 *
 	 * @since 1.0.0
 	 *
 	 * @param string $classes A string of space-separated classes.
-	 * @return bool True if the string contains a blacklisted class.
+	 * @return bool True if the string contains an excluded class.
 	 */
-	protected function has_blacklisted_class( string $classes ) : bool {
+	protected function has_excluded_class( string $classes ) : bool {
 		if ( false !== strpos( $classes, static::SKIP_LAZYLOAD_CLASS ) ) {
 			return true;
 		}
