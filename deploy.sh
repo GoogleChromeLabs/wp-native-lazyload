@@ -67,7 +67,7 @@ printf "Creating local copy of SVN repo..."
 svn checkout --quiet $SVNURL/trunk $SVNPATH/trunk
 echo "Done."
 
-printf "Exporting the HEAD of master from Git to the trunk of SVN..."
+printf "Exporting the HEAD of main from Git to the trunk of SVN..."
 git checkout-index --quiet --all --force --prefix=$SVNPATH/trunk/
 echo "Done."
 

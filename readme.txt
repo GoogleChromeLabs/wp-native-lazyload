@@ -58,7 +58,7 @@ For regular support requests, please use the [wordpress.org support forums](http
 
 = How can I contribute to the plugin? =
 
-If you have some ideas to improve the plugin or to solve a bug, feel free to raise an issue or submit a pull request in the [Github repository for the plugin](https://github.com/GoogleChromeLabs/wp-native-lazyload). Please stick to the [contributing guidelines](https://github.com/GoogleChromeLabs/wp-native-lazyload/blob/master/CONTRIBUTING.md).
+If you have some ideas to improve the plugin or to solve a bug, feel free to raise an issue or submit a pull request in the [Github repository for the plugin](https://github.com/GoogleChromeLabs/wp-native-lazyload). Please stick to the [contributing guidelines](https://github.com/GoogleChromeLabs/wp-native-lazyload/blob/main/CONTRIBUTING.md).
 
 You can also contribute to the plugin by translating it. Simply visit [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/native-lazyload) to get started.
 

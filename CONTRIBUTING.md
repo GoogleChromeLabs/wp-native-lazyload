@@ -15,14 +15,14 @@ We will take a look at your issue and either assign it keywords and a milestone 
 
 When contributing code...
 
-* fork the `master` branch of the repository on GitHub
+* fork the `main` branch of the repository on GitHub
 * make changes to the forked repository
     * write code that is backward-compatible with WordPress 4.7 and PHP 7.0
     * make sure you stick to the [WordPress](https://make.wordpress.org/core/handbook/best-practices/coding-standards/) coding standards
     * make sure you document the code properly
     * test your code with the constant `WP_DEBUG` enabled
 * when committing, in addition to a note about the fix, please reference your issue (if present)
-* push the changes to your fork and [submit a pull request](https://github.com/GoogleChromeLabs/wp-native-lazyload/compare) to the `master` branch
+* push the changes to your fork and [submit a pull request](https://github.com/GoogleChromeLabs/wp-native-lazyload/compare) to the `main` branch
 * follow the guidelines specified in the pull request template
 
 After that we will review the pull-request as soon as possible and either merge it, make suggestions on improvements or ask you for further details about your implementation.
